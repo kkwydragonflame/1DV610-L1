@@ -23,14 +23,14 @@ customElements.define('greeting-app',
         event.preventDefault()
         const name = this.shadowRoot.querySelector('input').value
         this.#sendGreeting(name)
+        this.#form.reset()
       })
     }
 
     #sendGreeting(name) {
-      debugger
       const newTextElement = document.createElement('p')
       newTextElement.textContent = `Hello, ${name}!`
-      this.appendChild(newTextElement)
+      this.shadowRoot.appendChild(newTextElement)
     }
   }
 )
