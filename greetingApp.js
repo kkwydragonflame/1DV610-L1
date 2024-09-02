@@ -1,4 +1,5 @@
 import { quirkyGreetings } from './quirkyGreetings.js'
+import { quirkySignOffs } from './quirkySignOffs.js'
 
 const template = document.createElement('template')
 template.innerHTML = `
@@ -13,12 +14,14 @@ template.innerHTML = `
 customElements.define('greeting-app',
   class extends HTMLElement {
     #form
+    #greetbox
     constructor () {
       super ()
       this.attachShadow({mode: 'open'})
        .appendChild(template.content.cloneNode(true))
 
       this.#form = this.shadowRoot.querySelector('form')
+      this.#greetbox = this.shadowRoot.querySelector('.greetbox')
     }
 
     connectedCallback() {
@@ -31,14 +34,13 @@ customElements.define('greeting-app',
     }
 
     #createGreeting(name) {
-      const randomIndex = Math.floor(Math.random() * quirkyGreetings.length)
-      return `${quirkyGreetings[randomIndex]}${name}!`
+      const greetingIndex = Math.floor(Math.random() * quirkyGreetings.length)
+      const signOffIndex = Math.floor(Math.random() * quirkySignOffs.length)
+      return `${quirkyGreetings[greetingIndex]}${name}, ${quirkySignOffs[signOffIndex]}!`
     }
 
     #sendGreeting(name) {
-      const newTextElement = document.createElement('p')
-      newTextElement.textContent = this.#createGreeting(name)
-      this.shadowRoot.appendChild(newTextElement)
+      this.#greetbox.textContent = this.#createGreeting(name)
     }
   }
 )
