@@ -1,3 +1,5 @@
+import { quirkyGreetings } from './quirkyGreetings.js'
+
 const template = document.createElement('template')
 template.innerHTML = `
 <style></style>
@@ -5,7 +7,8 @@ template.innerHTML = `
   <p>Type your name:</p>
   <input type="text">
   <button>Submit</button>
-</form>`
+</form>
+<p class="greetbox"></p>`
 
 customElements.define('greeting-app',
   class extends HTMLElement {
@@ -27,9 +30,14 @@ customElements.define('greeting-app',
       })
     }
 
+    #createGreeting(name) {
+      const randomIndex = Math.floor(Math.random() * quirkyGreetings.length)
+      return `${quirkyGreetings[randomIndex]}${name}!`
+    }
+
     #sendGreeting(name) {
       const newTextElement = document.createElement('p')
-      newTextElement.textContent = `Hello, ${name}!`
+      newTextElement.textContent = this.#createGreeting(name)
       this.shadowRoot.appendChild(newTextElement)
     }
   }
