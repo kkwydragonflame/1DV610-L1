@@ -7,7 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 document.addEventListener('greetingdone', () => {
-  const quoteElement = document.createElement('div')
+  quoteFetcher.parseData()
+  const quoteElement = document.querySelector('.quote')
+  quoteElement.innerHTML = ''
   
   const titleElement = document.createElement('h2')
   titleElement.textContent = quoteFetcher.getQuote().title
@@ -22,6 +24,4 @@ document.addEventListener('greetingdone', () => {
   }
 
   quoteElement.append(titleElement, authorElement, linesElement)
-
-  document.body.append(quoteElement)
 })
