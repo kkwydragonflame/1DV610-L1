@@ -15,7 +15,10 @@ template.innerHTML = `
     border-radius: 15px;
   }
   .animate {
-    animation: zoom 3s ease-in-out;
+    animation: zoom 2.5s ease-in-out;
+  }
+  .borderart {
+    border: ;
   }
   @keyframes zoom {
     0% {
