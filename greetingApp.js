@@ -17,9 +17,6 @@ template.innerHTML = `
   .animate {
     animation: zoom 2.5s ease-in-out;
   }
-  .borderart {
-    border: ;
-  }
   @keyframes zoom {
     0% {
       transform: scale(0);
@@ -58,6 +55,7 @@ customElements.define('greeting-app',
         const name = this.shadowRoot.querySelector('input').value
         this.#sendGreeting(name)
         this.#form.reset()
+        this.dispatchEvent(new CustomEvent('greetingdone'))
       })
     }
 
@@ -69,9 +67,11 @@ customElements.define('greeting-app',
 
     #sendGreeting(name) {
       this.#greetbox.textContent = this.#createGreeting(name)
+      this.shadowRoot.querySelector('div').classList.remove('hidden')
       this.#greetbox.classList.add('animate')
       this.#greetbox.addEventListener('animationend', () => {
         this.#greetbox.classList.remove('animate')
+        this.#greetbox.classList.add('borderart')
       })
     }
   }

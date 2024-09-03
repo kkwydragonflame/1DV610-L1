@@ -1,12 +1,12 @@
-html, body {
+html, body, .spinner {
   height: 100%;
   margin: 0;
 }
 body {
-  background: grey;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: radial-gradient(circle, firebrick, black);
 }
 greeting-app {
   --border: 3px solid black;
