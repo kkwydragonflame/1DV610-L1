@@ -55,7 +55,7 @@ customElements.define('greeting-app',
         const name = this.shadowRoot.querySelector('input').value
         this.#sendGreeting(name)
         this.#form.reset()
-        this.dispatchEvent(new CustomEvent('greetingdone'))
+        this.dispatchEvent(new CustomEvent('greetingdone', { bubbles: true }))
       })
     }
 
@@ -67,7 +67,6 @@ customElements.define('greeting-app',
 
     #sendGreeting(name) {
       this.#greetbox.textContent = this.#createGreeting(name)
-      this.shadowRoot.querySelector('div').classList.remove('hidden')
       this.#greetbox.classList.add('animate')
       this.#greetbox.addEventListener('animationend', () => {
         this.#greetbox.classList.remove('animate')

@@ -1,12 +1,20 @@
-html, body, .spinner {
+html, body {
   height: 100%;
   margin: 0;
 }
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background: radial-gradient(circle, firebrick, black);
+}
+div {
+  text-align: center;
+  line-height: 2.5;
+  font-size: 1.2em;
+  color: rgb(220, 215, 215);
+  width: 50%;
 }
 greeting-app {
   --border: 3px solid black;
